@@ -36,7 +36,7 @@ public sealed class ManageLocalData
         {
             Email = "viveklpu2011@gmail.com",
             IsActive = true,
-            MobileNumber = "7837459544",
+            MobileNumber = "7839659584",
             Name = "Vivek",
             ReportingManagerID = managerId
         };
@@ -49,7 +49,7 @@ public sealed class ManageLocalData
         {
             Designamtion = "Manager",
             ManagerName = "Subhash",
-            Mobile = "9023766630"
+            Mobile = "9328766630"
         };
         return await database.SaveReportingManagerMasterAsync(manager);
     }
