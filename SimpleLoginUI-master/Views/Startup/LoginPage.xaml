@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleLoginUI.Views.Startup.LoginPage"
+             Shell.NavBarIsVisible="False"
+             xmlns:handlers="clr-namespace:SimpleLoginUI.Handlers"
+             Title="LoginPage">
+    <VerticalStackLayout 
+            Spacing="25" 
+            Padding="30,0" 
+            VerticalOptions="Center">
+
+        <Image Source="team.png" HeightRequest="150" WidthRequest="150" />
+
+        <VerticalStackLayout Spacing="5">
+            <Label Text="Welcome!" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
+            <Label Text="Login to your account" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+         <Frame HeightRequest="45" Margin="0" Padding="10,0,0,0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+               <Picker Title="Select Type"
+                       TitleColor="Black"
+                       ItemsSource="{Binding LoginType}"
+                       ItemDisplayBinding="{Binding LoginType}"
+                       SelectedItem="{Binding SelectedLoginType}"/>
+         </Frame>
+        <StackLayout Orientation="Horizontal">
+            <Frame HeightRequest="45" Margin="0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                <handlers:BorderlessEntry Text="{Binding Name}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Name" />
+            </Frame>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Frame HeightRequest="45" Margin="0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                <handlers:BorderlessEntry Text="{Binding Mobile}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Mobile" Keyboard="Telephone" />
+            </Frame>
+        </StackLayout>
+
+        <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoginCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

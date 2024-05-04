@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleLoginUI.Views.Dashboard.AdminDashboardPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="My Leaves">
+    <StackLayout Padding="15" Spacing="15">
+        <Label FontSize="18" Text="My Leaves" />
+        <ScrollView>
+            <StackLayout BindableLayout.ItemsSource="{Binding Leaves}" Spacing="8">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="#C49B33"
+                                StrokeThickness="1"
+                                Padding="8"
+                                StrokeShape="RoundRectangle 4,4,4,4"
+                                BackgroundColor="LightGrey">
+                            <toolkit:Expander x:Name="expander">
+                                <toolkit:Expander.Header>
+                                   <Grid RowDefinitions="Auto,Auto"
+                                         RowSpacing="5"
+                                         ColumnSpacing="10"
+                                         ColumnDefinitions="*,Auto,Auto">
+                                        <Label FontSize="Medium"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               HorizontalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Leave Type: "/>
+                                                    <Span FontAttributes="Bold" Text="{Binding LeaveType}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize="Medium"
+                                               Grid.Column="0"
+                                               Grid.Row="1"
+                                               HorizontalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="No Of Days: "/>
+                                                    <Span FontAttributes="Bold" Text="{Binding NumberOfDays}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize="Medium"
+                                               Grid.Column="1"
+                                               Grid.Row="0"
+                                               Grid.RowSpan="2"
+                                               VerticalOptions="CenterAndExpand"
+                                               VerticalTextAlignment="Center"
+                                               FontAttributes="Bold">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding AppStatus}" Value="X">
+                                                    <Setter Property="Text" Value="Applied"/>
+                                                    <Setter Property="TextColor" Value="Blue"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding AppStatus}" Value="A">
+                                                    <Setter Property="Text" Value="Approved"/>
+                                                    <Setter Property="TextColor" Value="Green"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding AppStatus}" Value="R">
+                                                    <Setter Property="Text" Value="Rejected"/>
+                                                    <Setter Property="TextColor" Value="Red"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <Image Source="down_arrow.png"
+                                               HeightRequest="18"
+                                               WidthRequest="18"
+                                               Grid.Column="2"
+                                               Grid.Row="0"
+                                               Grid.RowSpan="2"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="EndAndExpand"
+                                               x:Name="arrowImage">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image"
+                                                             Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
+                                                             Value="True">
+                                                    <Setter Property="Rotation" Value="180"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Image"
+                                                             Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
+                                                             Value="False">
+                                                    <Setter Property="Rotation" Value="0"/>
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+                                    </Grid>
+                                </toolkit:Expander.Header>
+                                <VerticalStackLayout Padding="10" Spacing="10" BackgroundColor="White" Margin="0,10,0,0">
+                                    <Label FontSize="Medium"
+                                               HorizontalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Start Date: "/>
+                                                    <Span FontAttributes="Bold" Text="{Binding StartDate}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                    </Label>
+                                    <Label FontSize="Medium"
+                                               HorizontalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="End Date: "/>
+                                                    <Span FontAttributes="Bold" Text="{Binding EndDate}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    <Label FontSize="Medium"
+                                               HorizontalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                     <Span Text="Purpose: "/>
+                                                    <Span FontAttributes="Bold" Text="{Binding Purpose}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    <Label FontSize="Medium"
+                                               HorizontalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                     <Span Text="Reason: "/>
+                                                    <Span FontAttributes="Bold" Text="{Binding Reason}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                </VerticalStackLayout>
+                            </toolkit:Expander>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

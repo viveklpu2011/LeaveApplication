@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleLoginUI.Views.Dashboard.StudentDashboardPage"
+             Title="Employee Dashboard">
+    <ScrollView>
+    <StackLayout Padding="15"
+                 Spacing="15">
+        <Label FontSize="22"
+               Text="Leave Application"
+               FontAttributes="Bold"/>
+
+        <Entry Placeholder="Email Address"
+               HeightRequest="50"
+               Text="{Binding UserData.Email}"/>
+        <Entry Placeholder="Employee Name"
+               IsEnabled="False"
+               HeightRequest="50"
+               BackgroundColor="LightGray"
+               IsReadOnly="True"
+               Text="{Binding UserData.FullName}"/>
+        <Picker Title="Leave Type" HeightRequest="50"
+                ItemsSource="{Binding LeaveTypes}"
+                ItemDisplayBinding="{Binding Type}"
+                SelectedItem="{Binding SelectedLeaveType}"/>
+        <VerticalStackLayout>
+            <Label Text="Select From Date"/>
+            <DatePicker HeightRequest="50" MinimumDate="{Binding MinimumDate}" Date="{Binding FromDate}"/>
+        </VerticalStackLayout>
+         <VerticalStackLayout>
+            <Label Text="Select To Date"/>
+            <DatePicker HeightRequest="50" MinimumDate="{Binding MinimumDate}" Date="{Binding ToDate}"/>
+        </VerticalStackLayout>
+        <Grid ColumnDefinitions="*,*">
+             <Label Text="No Of Days"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"/>
+            <Entry
+                IsEnabled="False"
+                Grid.Column="1"
+                HeightRequest="40"
+                HorizontalOptions="End"
+                IsReadOnly="True"
+                WidthRequest="80"
+                Text="{Binding NumberOfDays}"
+                BackgroundColor="LightGray"/>
+        </Grid>
+        <Grid ColumnDefinitions="*,*,*"
+              BackgroundColor="Black"
+              Padding="1"
+              ColumnSpacing="1">
+            <Label Grid.Column="0"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    BackgroundColor="Gray"
+                    Padding="0,15"
+                    TextColor="Black"
+                    VerticalOptions="FillAndExpand"
+                    VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Allowed ("/>
+                        <Span Text="{Binding LeaveBalance.AllowedLeave}"/>
+                         <Span Text=")"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+             <Label Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    BackgroundColor="Gray"
+                    Padding="0,15"
+                    TextColor="Black"
+                    VerticalOptions="FillAndExpand"
+                    VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Consumed ("/>
+                        <Span Text="{Binding ConsumedLeaves}"/>
+                         <Span Text=")"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+             <Label Text="Balance"
+                    Grid.Column="2"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="0,15"
+                    HorizontalTextAlignment="Center"
+                    BackgroundColor="Gray"
+                    TextColor="Black"
+                    VerticalOptions="FillAndExpand"
+                    VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Balance ("/>
+                        <Span Text="{Binding BalanceLeaves}"/>
+                         <Span Text=")"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+         <Grid RowDefinitions="Auto,Auto">
+             <Label Text="Purpose"
+                    Grid.Row="0"
+                    HorizontalOptions="Start"/>
+            <Editor
+                Grid.Row="1"
+                HeightRequest="100"
+                Placeholder="Enter text here"
+                Text="{Binding Purpose}"/>
+        </Grid>
+        <Grid ColumnDefinitions="*,*">
+            <Button WidthRequest="100"
+                    Grid.Column="0"
+                    Text="Submit"
+                    Command="{Binding SubmitCommand}"/>
+            <Button WidthRequest="100"
+                    Grid.Column="1"
+                    Text="Cancel"
+                    BackgroundColor="Red"
+                    TextColor="White"/>
+        </Grid>
+    </StackLayout>
+    </ScrollView>
+</ContentPage>
